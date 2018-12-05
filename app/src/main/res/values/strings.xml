@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">WhatTheWeather</string>
+    <string name="city_name">New York</string>
+    <string name="city_desc">Ensoleillé</string>
+    <string name="city_temp">232°C</string>
+</resources>
