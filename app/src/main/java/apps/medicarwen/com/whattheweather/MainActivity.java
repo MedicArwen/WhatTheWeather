@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("WTF", "onCreate: MainActivity");
         setContentView(R.layout.activity_main);
         this.mTextViewCityName =findViewById(R.id.text_view_city_name);
         this.mBoutonFavoris = findViewById(R.id.boutonActionFlottant);
@@ -54,4 +55,34 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d("WTF", "onDestroy: MainActivity");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d("WTF", "onStart: Main Activity");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("WTF", "onResume: MainActivity");
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        Log.d("WTF", "onPause: MainActivity");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        Log.d("WTF", "onStop: MainActivity");
+    }
 }
