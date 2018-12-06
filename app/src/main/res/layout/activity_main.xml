@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     >
 <LinearLayout
+    android:id="@+id/layoutOrange"
     android:layout_width="match_parent"
     android:layout_height="250dp"
     android:orientation="vertical"
@@ -19,11 +20,12 @@
         android:gravity="center"
         android:padding="10dp">
         <TextView
+            android:id="@+id/text_view_city_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold" android:textSize="50dp"
-            android:textColor="@color/white"
-            android:text="@string/city_name"/>
+            android:textStyle="bold"
+            android:textSize="@dimen/TexteLarge"
+            android:textColor="@color/white"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:textColor="@color/white"
@@ -44,7 +46,7 @@
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:textAlignment="textEnd"
-           android:textSize="50dp"
+           android:textSize="@dimen/TexteLarge"
            android:textColor="@color/white"
            android:layout_gravity="center|end"
            android:text="@string/city_temp" />
@@ -53,11 +55,32 @@
 
 </LinearLayout>
 </LinearLayout>
+    <TextView
+        android:id="@+id/text_view_networkstatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:text="placeholder"/>
     <Button
+        android:id="@+id/buttonBoutonFavoris"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_fav"
         android:textColor="@color/colorPrimaryDark"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="bouton1"
+        android:onClick="actionClickBouton1"/>
+    <android.support.v7.widget.AppCompatButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="bouton2"/>
 </RelativeLayout>

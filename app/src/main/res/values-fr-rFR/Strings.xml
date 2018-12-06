@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">WhatTheWeather</string>
+    <string name="app_name">QuelTemps</string>
     <string name="city_name">New York</string>
     <string name="city_desc">Ensoleillé</string>
     <string name="city_temp">232°C</string>
     <string name="button_fav">Favoris</string>
+    <string name="text_about_connected">Connecté</string>
+    <string name="text_about_not_connected">Pas connecté</string>
 </resources>
