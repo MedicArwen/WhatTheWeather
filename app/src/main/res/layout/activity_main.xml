@@ -67,28 +67,14 @@
         android:layout_centerVertical="true"
         android:text="placeholder"
         android:visibility="invisible" />
-
-    <Button
-        android:id="@+id/buttonBoutonFavoris"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:text="@string/button_fav"
-        android:textColor="@color/colorPrimaryDark" />
-
-    <Button
-        android:id="@+id/buttonBouton1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:text="bouton1" />
-
-    <Button
-        android:id="@+id/buttonBouton2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:text="bouton2" />
+<android.support.design.widget.FloatingActionButton
+    android:id="@+id/boutonActionFlottant"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_alignParentRight="true"
+    android:layout_marginBottom="@dimen/activity_vertical_margin"
+    android:layout_marginRight="@dimen/activity_horizontal_margin"
+    android:src="@drawable/ic_favorite_white_24dp"
+    android:visibility="visible"/>
 </RelativeLayout>
