@@ -8,10 +8,8 @@
     tools:context=".activities.FavoriteActivity"
     tools:showIn="@layout/activity_favorite">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
-        android:text="" android:id="@+id/texteSaisiAffiche" />
-
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/listeVilleFavorites"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
 </android.support.v4.widget.NestedScrollView>

@@ -21,8 +21,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView mTextConnection;
     private LinearLayout mLayoutOrange;
     private FloatingActionButton mBoutonFavoris;
-    private EditText mChamptexte;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,14 +29,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         this.mTextViewCityName =findViewById(R.id.text_view_city_name);
         this.mBoutonFavoris = findViewById(R.id.boutonActionFlottant);
-        this.mChamptexte = findViewById(R.id.texteSaisi);
 
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(),FavoriteActivity.class);
-                Log.d("WTF", "onClick: texte recupere:"+mChamptexte.getText());
-                intent.putExtra("texteSaisi",mChamptexte.getText().toString());
                 startActivity(intent);
             }
         };

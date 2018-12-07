@@ -7,4 +7,10 @@
     <string name="button_fav">Favoris</string>
     <string name="text_about_connected">Connecté</string>
     <string name="text_about_not_connected">Pas connecté</string>
+    <string name="title_activity_favorite">Favoris</string>
+    <string name="action_settings">Paramètres</string>
+    <string name="dialog_title">Ajouter une ville</string>
+    <string name="dialog_message_addcity">Ajouter une ville</string>
+    <string name="dialog_button_positive">OK</string>
+    <string name="dialog_button_cancel">Annuler</string>
 </resources>
