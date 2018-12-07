@@ -8,13 +8,14 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-
+import java.util.ArrayList;
+import apps.medicarwen.com.whattheweather.models.City;
 import apps.medicarwen.com.whattheweather.R;
 
 public class FavoriteActivity extends AppCompatActivity {
     private TextView texteSaisi;
     private Bundle extras;
-
+    private ArrayList<City> mCities;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
