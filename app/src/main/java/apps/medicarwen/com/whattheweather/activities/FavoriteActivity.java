@@ -1,4 +1,4 @@
-package apps.medicarwen.com.whattheweather;
+package apps.medicarwen.com.whattheweather.activities;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -7,13 +7,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
+
+import apps.medicarwen.com.whattheweather.R;
 
 public class FavoriteActivity extends AppCompatActivity {
+    private TextView texteSaisi;
+    private Bundle extras;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("WTF", "onCreate: Favorite Activity");
+        Log.d("WTF", "onCreate: Favorite Activity 1");
         setContentView(R.layout.activity_favorite);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -27,6 +32,13 @@ public class FavoriteActivity extends AppCompatActivity {
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        extras = getIntent().getExtras();
+        this.texteSaisi = findViewById(R.id.texteSaisiAffiche);
+        String s =extras.getString("texteSaisi");
+        this.texteSaisi.setText(s);
+
+        Log.d("WTF", "texte dans le wallet: "+s);
     }
 
     @Override
@@ -38,6 +50,7 @@ public class FavoriteActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         Log.d("WTF", "onStart: FavoriteActivity");
+
     }
 
     @Override
