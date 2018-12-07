@@ -67,7 +67,8 @@ public class FavoriteActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         Log.d("WTF", "onClick: "+editTextCity.getText().toString());
                         mCities.add(new City(editTextCity.getText().toString(),"66°C"," Météo Surréaliste",R.drawable.weather_snowy_grey));
-                      }
+                    favoriteAdapter.notifyDataSetChanged();
+                    }
                 };
 
                 builder.setPositiveButton(R.string.dialog_button_positive,listenOK);
