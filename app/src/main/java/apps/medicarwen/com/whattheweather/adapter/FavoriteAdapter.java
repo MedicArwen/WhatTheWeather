@@ -4,7 +4,9 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -32,6 +34,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
         public ImageView mImageViewWeather;
         public TextView mTextViewTemperature;
         public TextView mTextViewDescription;
+        public City mCity;
 
         public int position;
 
@@ -46,6 +49,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
             mTextViewTemperature = (TextView) view.findViewById(R.id.text_view_item_temperature);
             mTextViewDescription = (TextView) view.findViewById(R.id.text_view_item_details);
         }
+
     }
 
     @Override
@@ -63,10 +67,10 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
         City city = mArrayListCities.get(position);
 
         holder.mTextViewCity.setText(city.mName);
-        holder.mImageViewWeather.setImageResource(city.mWeatherResIconGrey);
-        holder.mTextViewTemperature.setText(city.mTemperature);
-        holder.mTextViewDescription.setText(city.mDescription);
-
+        //holder.mImageViewWeather.setImageResource(city.mWeatherResIconGrey);
+        holder.mTextViewTemperature.setText(city.mInfoAir.getTemperature());
+        holder.mTextViewDescription.setText(city.mMeteo.description);
+        holder.mCity = city;
         holder.position = position;
     }
 
@@ -100,6 +104,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
             return true;
         }
     };
+
 }
 
 

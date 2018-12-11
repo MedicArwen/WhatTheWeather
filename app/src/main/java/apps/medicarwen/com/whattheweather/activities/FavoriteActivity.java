@@ -3,6 +3,7 @@ package apps.medicarwen.com.whattheweather.activities;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
@@ -18,11 +19,21 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
+import org.json.JSONException;
+
+import java.io.IOException;
 import java.util.ArrayList;
 
 import apps.medicarwen.com.whattheweather.adapter.FavoriteAdapter;
 import apps.medicarwen.com.whattheweather.models.City;
 import apps.medicarwen.com.whattheweather.R;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class FavoriteActivity extends AppCompatActivity {
     private TextView texteSaisi;
@@ -33,6 +44,8 @@ public class FavoriteActivity extends AppCompatActivity {
     protected DialogInterface.OnClickListener listenOK;
     protected DialogInterface.OnClickListener listenCancel;
     private Context mContext;
+    private OkHttpClient mOkHttpClient;
+    private Handler mHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,8 +79,15 @@ public class FavoriteActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Log.d("WTF", "onClick: "+editTextCity.getText().toString());
-                        mCities.add(new City(editTextCity.getText().toString(),"66°C"," Météo Surréaliste",R.drawable.weather_snowy_grey));
-                    favoriteAdapter.notifyDataSetChanged();
+                        try {
+                            GetCityInfoFromWeb(editTextCity.getText().toString());
+                        }
+                        catch (Exception e)
+                        {
+                            Log.d("WTF", "onClick: "+e.getMessage());
+                        }
+                      //  mCities.add(new City(editTextCity.getText().toString(),"66°C"," Météo Surréaliste",R.drawable.weather_snowy_grey));
+
                     }
                 };
 
@@ -78,15 +98,7 @@ public class FavoriteActivity extends AppCompatActivity {
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        City city1 = new City("Montréal","-140°C","Pluies apocalyptiques",R.drawable.weather_drizzle_white);
-        City city2 = new City("New York","560°C","Eté coréen",R.drawable.weather_drizzle_grey);
-        City city3 = new City("Paris","-10°C","Météo bretonne",R.drawable.weather_rainy_grey);
-        City city4 = new City("Toulouse","30°C","Eté indien",R.drawable.weather_sunny_grey);
         mCities= new ArrayList<>();
-        mCities.add(city1);
-        mCities.add(city2);
-        mCities.add(city3);
-        mCities.add(city4);
         this.mRecyclerViewCities = findViewById(R.id.listeVilleFavorites);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
@@ -129,5 +141,42 @@ public class FavoriteActivity extends AppCompatActivity {
 
         Log.d("WTF", "onStop: FavoriteActivity");
     }
+    private void GetCityInfoFromWeb(String pNomCity) throws IOException {
+        mOkHttpClient = new OkHttpClient();
+        mHandler = new Handler();
+        final Request request = new Request.Builder().url("http://api.openweathermap.org/data/2.5/weather?lang=fr&units=metric&q="+pNomCity+"&appid=01897e497239c8aff78d9b8538fb24ea").build();
+        Log.d("WTF", "onResponse: allo monsieur l'ordinateur");
+        mOkHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.d("WTF", "onFailure: ERROR OpenWeather");
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+
+                    Log.d("WTF", "onResponse: response is successful");
+                    final String stringJason = response.body().string();
+                    Log.d("WTF", "onResponse: " + stringJason);
+                    mHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                mCities.add(new City(stringJason));
+                                favoriteAdapter.notifyDataSetChanged();
+
+                            } catch (JSONException je) {
+                                Log.d("WTF", "run: "+je.getMessage());
+
+                            }
+
+                        }
+                    });
+                }
+            }
+        });
+    }
+
 }
 
