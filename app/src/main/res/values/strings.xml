@@ -12,4 +12,6 @@
     <string name="dialog_message_addcity">Add a city</string>
     <string name="dialog_button_positive">OK</string>
     <string name="dialog_button_cancel">Cancel</string>
+    <string name="text_error_msg_webservice_success">Webservice call is successfull</string>
+    <string name="text_error_msg_webservice_failed">Webservice call is failed</string>
 </resources>

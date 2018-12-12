@@ -21,17 +21,6 @@ public class City  {
         mCoordonnees = new Coord(jSon.getJSONObject("coord"));
         mCityId=jSon.getInt("id");
     }
-    public City(double lon, double lat) throws JSONException
-    {
-            this(DataAccessCallOpenWeather.getJsonCityMeteoPerGPS(lon, lat));
-    }
+
 
 }
-/*
-{"coord":{"lon":0.69,"lat":47.39},
-"weather":[{"id":741,"main":"Fog","description":"fog","icon":"50d"}],
-"base":"stations","main":{"temp":275.15,"pressure":1026,"humidity":100,
-"temp_min":275.15,"temp_max":275.15},"visibility":300,"wind":{"speed":1.41,"deg":49.0082},"
-clouds":{"all":90},"dt":1544518800,"sys":{"type":1,"id":6537,"message":0.005,"country":"FR",
-"sunrise":1544513681,"sunset":1544544389},"id":6454060,"name":"Tours","cod":200}
-*/
