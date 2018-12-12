@@ -15,6 +15,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+
 import java.util.ArrayList;
 
 import apps.medicarwen.com.whattheweather.DataAccess.DataAccessCallOpenWeather;
@@ -104,7 +106,23 @@ public class FavoriteActivity extends AppCompatActivity implements MyCallback {
     protected void onStart() {
         super.onStart();
         Log.d("WTF", "onStart: FavoriteActivity");
+        try {
+            JSONArray jsonArray= DataAccessCallOpenWeather.loadCityList(mContext);
+            for (int i = 0; i < jsonArray.length(); i++) {
 
+                Log.d("WTF", "loadCityList: array="+jsonArray.get(i).toString());
+                City newCity= new City(jsonArray.get(i).toString());
+                mCities.add(newCity);
+                Log.d("WTF", "loadCityList: new city="+newCity.toString());
+
+            }
+            mFavoriteAdapter.notifyDataSetChanged();
+        }
+        catch (Exception e)
+        {
+
+            Toast.makeText(mContext,R.string.text_error_msg_load_failed,Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -134,7 +152,8 @@ public class FavoriteActivity extends AppCompatActivity implements MyCallback {
 
     @Override
     public void onFail() {
-        Toast.makeText(mContext,"text_error_msg_webservice_failed",Toast.LENGTH_SHORT);
+        Log.d("WTF", "onFail: webservice error");
+        Toast.makeText(mContext,R.string.text_error_msg_webservice_failed,Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -146,9 +165,12 @@ public class FavoriteActivity extends AppCompatActivity implements MyCallback {
 
             mCities.add(new City(strResponse));
             mFavoriteAdapter.notifyDataSetChanged();
+            DataAccessCallOpenWeather.saveCityList(mContext,mCities);
             Toast.makeText(mContext,"text_error_msg_webservice_success",Toast.LENGTH_SHORT);
+
         } catch (Exception e) {
             Log.d("WTF", "onResponse: " + e.getMessage());
+            Toast.makeText(mContext,"text_error_msg_webservice_failed",Toast.LENGTH_SHORT);
         }
     }
 }

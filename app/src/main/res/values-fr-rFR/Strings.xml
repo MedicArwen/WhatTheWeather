@@ -15,4 +15,5 @@
     <string name="dialog_button_cancel">Annuler</string>
     <string name="text_error_msg_webservice_success">Réussite de l\'appel du Web service</string>
     <string name="text_error_msg_webservice_failed">Echec de l\'appel du webservice</string>
+    <string name="text_error_msg_load_failed">Erreur de chargement de la sauvagerade</string>
 </resources>

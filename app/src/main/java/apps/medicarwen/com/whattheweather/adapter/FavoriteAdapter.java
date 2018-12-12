@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import apps.medicarwen.com.whattheweather.DataAccess.DataAccessCallOpenWeather;
 import apps.medicarwen.com.whattheweather.R;
 import apps.medicarwen.com.whattheweather.models.City;
 
@@ -95,6 +96,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
                     notifyDataSetChanged();
                     notifyItemRemoved(position);
                     notifyItemRangeChanged(position, mArrayListCities.size());
+                    DataAccessCallOpenWeather.saveCityList(mContext,mArrayListCities);
                 }
             });
 

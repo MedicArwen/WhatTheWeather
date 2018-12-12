@@ -1,9 +1,18 @@
 package apps.medicarwen.com.whattheweather.DataAccess;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.util.Log;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 import apps.medicarwen.com.whattheweather.interfaces.MyCallback;
+import apps.medicarwen.com.whattheweather.models.City;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -11,7 +20,8 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class DataAccessCallOpenWeather {
-
+final public static String FILENAME ="FICHIERS_PREFERENCES_MYWEATHER";
+final public static String CITYLIST="LISTE_CITIES_JSON";
 static Handler handler;
     public static String getJsonCityMeteo(String strUrl, final MyCallback myCallback) {
         String sResponse = "";
@@ -75,6 +85,25 @@ static Handler handler;
         url+="&lat="+pLat+"&lon="+pLon;
         Log.d("WTF", "getJsonCityMeteoPerGPS: "+url);
         return getJsonCityMeteo(url,pMyCallBack);
+
+    }
+    public static void saveCityList(Context pContext,  ArrayList pListeCity)
+    {
+        Log.d("WTF", "saveCityList: "+pListeCity.toString());
+        SharedPreferences preferences = pContext.getSharedPreferences(FILENAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(CITYLIST,pListeCity.toString());
+        editor.apply();
+        Log.d("WTF", "saveCityList: les préférences ont été sauvegardées.");
+    }
+    public static JSONArray loadCityList(Context pContext) throws JSONException
+    {
+        Log.d("WTF", "loadCityList: Je vais parser=");
+        SharedPreferences preferences = pContext.getSharedPreferences(FILENAME,Context.MODE_PRIVATE);
+        Log.d("WTF", "loadCityList:"+preferences.getString(CITYLIST,""));
+        JSONArray jsonArray = new JSONArray(preferences.getString(CITYLIST,""));
+        Log.d("WTF", "loadCityList: array="+jsonArray.toString());
+        return jsonArray;
 
     }
 }
