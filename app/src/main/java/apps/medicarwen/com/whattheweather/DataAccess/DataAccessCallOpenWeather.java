@@ -96,14 +96,18 @@ static Handler handler;
         editor.apply();
         Log.d("WTF", "saveCityList: les préférences ont été sauvegardées.");
     }
-    public static JSONArray loadCityList(Context pContext) throws JSONException
+    public static ArrayList<City> loadCityList(Context pContext) throws JSONException
     {
+        ArrayList<City> listeCity = new ArrayList<>();
         Log.d("WTF", "loadCityList: Je vais parser=");
         SharedPreferences preferences = pContext.getSharedPreferences(FILENAME,Context.MODE_PRIVATE);
         Log.d("WTF", "loadCityList:"+preferences.getString(CITYLIST,""));
         JSONArray jsonArray = new JSONArray(preferences.getString(CITYLIST,""));
         Log.d("WTF", "loadCityList: array="+jsonArray.toString());
-        return jsonArray;
+        for (int i = 0; i < jsonArray.length(); i++) {
+            listeCity.add(new City(jsonArray.get(i).toString()));
+        }
+        return listeCity;
 
     }
 }

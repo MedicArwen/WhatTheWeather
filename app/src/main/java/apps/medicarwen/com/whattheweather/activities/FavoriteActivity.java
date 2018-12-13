@@ -38,7 +38,6 @@ public class FavoriteActivity extends AppCompatActivity implements MyCallback {
         Log.d("WTF", "FavoriteActivity.onCreate():Begin");
         super.onCreate(savedInstanceState);
         mContext = this;
-        mCities = new ArrayList<>();
 
         Log.d("WTF", "FavoriteActivity.onCreate():Chargement du Layout de la fenetre");
         setContentView(R.layout.activity_favorite);
@@ -57,6 +56,14 @@ public class FavoriteActivity extends AppCompatActivity implements MyCallback {
             }
         });
         Log.d("WTF", "FavoriteActivity.onCreate():Configuration de la RecycledView des favoris");
+        Log.d("WTF", "FavoriteActivity.onCreate():chargement liste");
+        try {
+            mCities = DataAccessCallOpenWeather.loadCityList(mContext);
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(mContext,R.string.text_error_msg_load_failed,Toast.LENGTH_SHORT).show();
+        }
         // on récupere l'objet instancié par le XML du layout (V)
         this.mRecyclerViewCities = findViewById(R.id.listeVilleFavorites);
         // associe un layout manager à la RecycledView (V)
@@ -106,23 +113,7 @@ public class FavoriteActivity extends AppCompatActivity implements MyCallback {
     protected void onStart() {
         super.onStart();
         Log.d("WTF", "onStart: FavoriteActivity");
-        try {
-            JSONArray jsonArray= DataAccessCallOpenWeather.loadCityList(mContext);
-            for (int i = 0; i < jsonArray.length(); i++) {
 
-                Log.d("WTF", "loadCityList: array="+jsonArray.get(i).toString());
-                City newCity= new City(jsonArray.get(i).toString());
-                mCities.add(newCity);
-                Log.d("WTF", "loadCityList: new city="+newCity.toString());
-
-            }
-            mFavoriteAdapter.notifyDataSetChanged();
-        }
-        catch (Exception e)
-        {
-
-            Toast.makeText(mContext,R.string.text_error_msg_load_failed,Toast.LENGTH_SHORT).show();
-        }
     }
 
     @Override
