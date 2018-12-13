@@ -13,17 +13,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import java.io.IOException;
 
 import apps.medicarwen.com.whattheweather.DataAccess.DataAccessCallOpenWeather;
 import apps.medicarwen.com.whattheweather.R;
 import apps.medicarwen.com.whattheweather.interfaces.MyCallback;
 import apps.medicarwen.com.whattheweather.models.City;
-import okhttp3.Call;
-import okhttp3.Callback;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 import com.squareup.picasso.*;
 
@@ -81,8 +76,8 @@ public class MainActivity extends AppCompatActivity implements MyCallback {
     }
 
     private void afficherVueNerworkUnavailble() {
-        this.mTextConnection = (TextView) findViewById(R.id.text_view_networkstatus);
-        this.mLayoutOrange = (LinearLayout) findViewById(R.id.layoutOrange);
+        this.mTextConnection = findViewById(R.id.text_view_networkstatus);
+        this.mLayoutOrange = findViewById(R.id.layoutOrange);
         this.mTextConnection.setVisibility(View.VISIBLE);
         this.mTextConnection.setText(R.string.text_about_not_connected);
         this.mBoutonFavoris.hide();

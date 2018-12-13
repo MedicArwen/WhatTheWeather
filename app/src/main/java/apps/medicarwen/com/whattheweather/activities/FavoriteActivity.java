@@ -42,11 +42,11 @@ public class FavoriteActivity extends AppCompatActivity implements MyCallback {
         Log.d("WTF", "FavoriteActivity.onCreate():Chargement du Layout de la fenetre");
         setContentView(R.layout.activity_favorite);
         Log.d("WTF", "FavoriteActivity.onCreate():Configuration de l'action BAR");
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Log.d("WTF", "FavoriteActivity.onCreate():Recuperation du Bouton Flottant");
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab =findViewById(R.id.fab);
 
         Log.d("WTF", "FavoriteActivity.onCreate():Abonnement du bouton flottant à l'evenement click");
         fab.setOnClickListener(new View.OnClickListener() {
@@ -62,6 +62,7 @@ public class FavoriteActivity extends AppCompatActivity implements MyCallback {
         }
         catch (Exception e)
         {
+            mCities= new ArrayList<>();
             Toast.makeText(mContext,R.string.text_error_msg_load_failed,Toast.LENGTH_SHORT).show();
         }
         // on récupere l'objet instancié par le XML du layout (V)
@@ -157,11 +158,11 @@ public class FavoriteActivity extends AppCompatActivity implements MyCallback {
             mCities.add(new City(strResponse));
             mFavoriteAdapter.notifyDataSetChanged();
             DataAccessCallOpenWeather.saveCityList(mContext,mCities);
-            Toast.makeText(mContext,"text_error_msg_webservice_success",Toast.LENGTH_SHORT);
+            Toast.makeText(mContext,"text_error_msg_webservice_success",Toast.LENGTH_SHORT).show();
 
         } catch (Exception e) {
             Log.d("WTF", "onResponse: " + e.getMessage());
-            Toast.makeText(mContext,"text_error_msg_webservice_failed",Toast.LENGTH_SHORT);
+            Toast.makeText(mContext,"text_error_msg_webservice_failed",Toast.LENGTH_SHORT).show();
         }
     }
 }

@@ -2,6 +2,7 @@ package apps.medicarwen.com.whattheweather.DataAccess;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -20,19 +21,20 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class DataAccessCallOpenWeather {
-final public static String FILENAME ="FICHIERS_PREFERENCES_MYWEATHER";
-final public static String CITYLIST="LISTE_CITIES_JSON";
-static Handler handler;
-    public static String getJsonCityMeteo(String strUrl, final MyCallback myCallback) {
+final private static String FILENAME ="FICHIERS_PREFERENCES_MYWEATHER";
+final private static String CITYLIST="LISTE_CITIES_JSON";
+private static Handler handler;
+    private static String getJsonCityMeteo(String strUrl, final MyCallback myCallback) {
         String sResponse = "";
         OkHttpClient okHttpClient;
         try {
             okHttpClient = new OkHttpClient();
             handler = new Handler();
             final Request request = new Request.Builder().url(strUrl).build();
+            Log.d("WTF", "request:"+strUrl);
             okHttpClient.newCall(request).enqueue(new Callback() {
                 @Override
-                public void onFailure(Call call, IOException e) {
+                public void onFailure(@NonNull Call call, @NonNull IOException e) {
 
                     handler.post(new Runnable() {
                         @Override
@@ -40,11 +42,11 @@ static Handler handler;
                             myCallback.onFail();
                         }
                     });
-
+                    Log.d("WTF", "on failure:"+e.getMessage());
                 }
 
                 @Override
-                public void onResponse(Call call, final Response response) throws IOException {
+                public void onResponse(@NonNull Call call, @NonNull final Response response) throws IOException {
 
 
                     final String strResponse =response.body().string();
