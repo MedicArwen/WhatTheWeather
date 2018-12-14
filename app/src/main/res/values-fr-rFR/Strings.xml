@@ -16,4 +16,7 @@
     <string name="text_error_msg_webservice_success">Réussite de l\'appel du Web service</string>
     <string name="text_error_msg_webservice_failed">Echec de l\'appel du webservice</string>
     <string name="text_error_msg_load_failed">Erreur de chargement de la sauvagerade</string>
+    <string name="text_geoloc_start">Recherche en cours de la position</string>
+    <string name="text_geoloc_succes">Position GPS déterminée</string>
+    <string name="text_geoloc_nopermission">GPS: Permission refusee</string>
 </resources>

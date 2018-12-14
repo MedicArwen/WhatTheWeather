@@ -15,4 +15,7 @@
     <string name="text_error_msg_webservice_success">Webservice call is successfull</string>
     <string name="text_error_msg_webservice_failed">Webservice call is failed</string>
     <string name="text_error_msg_load_failed">Error loading saved bookmarks</string>
+    <string name="text_geoloc_start">Currently searching GPS</string>
+    <string name="text_geoloc_succes">GPS positionning successfull</string>
+    <string name="text_geoloc_nopermission">GPS: Permission refused</string>
 </resources>

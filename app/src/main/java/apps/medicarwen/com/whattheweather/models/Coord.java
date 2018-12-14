@@ -11,4 +11,9 @@ public class Coord {
         lon=pCoord.getInt("lon");
         lat=pCoord.getInt("lat");
     }
+
+    public Coord(double lon, double lat) {
+        this.lon = lon;
+        this.lat = lat;
+    }
 }

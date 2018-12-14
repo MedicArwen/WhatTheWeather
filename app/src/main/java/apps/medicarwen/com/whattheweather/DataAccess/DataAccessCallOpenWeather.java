@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 import apps.medicarwen.com.whattheweather.interfaces.MyCallback;
 import apps.medicarwen.com.whattheweather.models.City;
+import apps.medicarwen.com.whattheweather.models.Coord;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -79,10 +80,10 @@ static Handler handler;
         return getJsonCityMeteo(url,pMyCallBack);
 
     }
-    public static String getJsonCityMeteoPerGPS(String pLon, String pLat, final MyCallback pMyCallBack)
+    public static String getJsonCityMeteoPerGPS(Coord pCoord, final MyCallback pMyCallBack)
     {
         String url = "http://api.openweathermap.org/data/2.5/weather?lang=fr&units=metric&appid=01897e497239c8aff78d9b8538fb24ea";
-        url+="&lat="+pLat+"&lon="+pLon;
+        url+="&lat="+pCoord.lat+"&lon="+pCoord.lon;
         Log.d("WTF", "getJsonCityMeteoPerGPS: "+url);
         return getJsonCityMeteo(url,pMyCallBack);
 
