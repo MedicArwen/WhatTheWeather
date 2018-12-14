@@ -11,6 +11,7 @@ public class City  {
     public Weather mMeteo;
     public Coord mCoordonnees;
     private String mJson;
+    private int mIdDataBase;
     public City(String pJasonString) throws JSONException
     {
         JSONObject jSon = new JSONObject(pJasonString);

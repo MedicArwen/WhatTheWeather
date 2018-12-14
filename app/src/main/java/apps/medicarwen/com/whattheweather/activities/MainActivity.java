@@ -41,13 +41,11 @@ public class MainActivity extends AppCompatActivity implements MyCallback {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d("WTF", "onCreate: MainActivity");
-
         setContentView(R.layout.activity_main);
         this.mTextViewCityName = findViewById(R.id.text_view_city_name);
         this.mDescription = findViewById(R.id.text_description);
         this.mTemperature = findViewById(R.id.text_temp);
         this.mWeatherImage = findViewById(R.id.image_meteo);
-
         this.mBoutonFavoris = findViewById(R.id.boutonActionFlottant);
 
         View.OnClickListener onClickListener = new View.OnClickListener() {
