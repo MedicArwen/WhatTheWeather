@@ -16,6 +16,12 @@ public class Weather {
         description=pWeather.getString("description");
         icon=pWeather.getString("icon");
     }
+
+    public Weather(String pDescription, String pIcon) {
+        description=pDescription;
+        icon=pIcon;
+    }
+
     public String getIconeURL()
     {
         return "http://openweathermap.org/img/w/"+icon+".png";

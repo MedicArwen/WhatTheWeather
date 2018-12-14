@@ -20,6 +20,11 @@ public class AirInfo {
         temp_min=pCoord.getDouble("temp_min");
         temp_max=pCoord.getDouble("temp_max");
     }
+
+    public AirInfo(double pTemp) {
+        temp=pTemp;
+    }
+
     public String getTemperature()
     {
         NumberFormat format = NumberFormat.getInstance();

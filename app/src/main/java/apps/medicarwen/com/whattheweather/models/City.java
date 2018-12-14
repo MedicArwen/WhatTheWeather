@@ -23,8 +23,19 @@ public class City  {
         mJson = pJasonString;
     }
 
+    public City(String pCityName, int pIdCity, AirInfo pAirInfo, Weather pMeteo, Coord pCoord) {
+        mName=pCityName;
+        mCityId=pIdCity;
+        mInfoAir=pAirInfo;
+        mMeteo=pMeteo;
+        mCoordonnees=pCoord;
+    }
+
     @Override
     public String toString() {
+        if (mJson==null)
+            return "("+mName+","+mCityId+")";
+            else
         return mJson;
     }
 }

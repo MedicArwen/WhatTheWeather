@@ -92,11 +92,13 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.ViewHo
             builder.setMessage("Supprimer " + holder.mTextViewCity.getText().toString() + " ?");
             builder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
+
+                    Log.d("WTF", "onClick: ("+ position+") "+mArrayListCities.get(position).toString());
+                    DataAccessCallOpenWeather.deleteCityDB(mContext,mArrayListCities.get(position));
                     mArrayListCities.remove(position);
                     notifyDataSetChanged();
                     notifyItemRemoved(position);
                     notifyItemRangeChanged(position, mArrayListCities.size());
-                    DataAccessCallOpenWeather.saveCityList(mContext,mArrayListCities);
                 }
             });
 

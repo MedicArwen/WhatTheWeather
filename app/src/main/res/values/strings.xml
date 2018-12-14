@@ -16,4 +16,5 @@
     <string name="text_error_msg_webservice_failed">Webservice call is failed</string>
     <string name="text_error_msg_load_failed">Error loading saved bookmarks</string>
     <string name="text_content_img_desc">A picture representing the weather</string>
+    <string name="text_error_msg_no_bookmarks">No bookmarks found</string>
 </resources>

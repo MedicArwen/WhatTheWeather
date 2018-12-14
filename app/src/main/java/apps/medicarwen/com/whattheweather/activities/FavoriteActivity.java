@@ -58,13 +58,16 @@ public class FavoriteActivity extends AppCompatActivity implements MyCallback {
         Log.d("WTF", "FavoriteActivity.onCreate():Configuration de la RecycledView des favoris");
         Log.d("WTF", "FavoriteActivity.onCreate():chargement liste");
         try {
-            mCities = DataAccessCallOpenWeather.loadCityList(mContext);
+            mCities = DataAccessCallOpenWeather.loadCityListDB(mContext);
         }
         catch (Exception e)
         {
+            Log.d("WTF", "onCreate exception:"+e.getMessage());
             mCities= new ArrayList<>();
             Toast.makeText(mContext,R.string.text_error_msg_load_failed,Toast.LENGTH_SHORT).show();
         }
+        if (mCities.size()==0)
+            Toast.makeText(mContext,R.string.text_error_msg_no_bookmarks,Toast.LENGTH_SHORT).show();
         // on récupere l'objet instancié par le XML du layout (V)
         this.mRecyclerViewCities = findViewById(R.id.listeVilleFavorites);
         // associe un layout manager à la RecycledView (V)
@@ -74,6 +77,7 @@ public class FavoriteActivity extends AppCompatActivity implements MyCallback {
         // on associe l'adapteur à la recycled view (V et C)
         mRecyclerViewCities.setAdapter(mFavoriteAdapter);
         Log.d("WTF", "FavoriteActivity.onCreate():End");
+
     }
 
     private void generateDialogAddCityToFavorite(View view) {
@@ -154,10 +158,11 @@ public class FavoriteActivity extends AppCompatActivity implements MyCallback {
         Log.d("WTF", "onResponse: response is successful");
         Log.d("WTF", "onResponse: " + strResponse);
         try {
-
-            mCities.add(new City(strResponse));
+            City newCity =new City(strResponse);
+            mCities.add(newCity);
             mFavoriteAdapter.notifyDataSetChanged();
-            DataAccessCallOpenWeather.saveCityList(mContext,mCities);
+            //DataAccessCallOpenWeather.saveCityListDB(mContext,mCities);
+            DataAccessCallOpenWeather.insertCityDB(mContext,newCity);
             Toast.makeText(mContext,R.string.text_error_msg_webservice_success,Toast.LENGTH_SHORT).show();
 
         } catch (Exception e) {
