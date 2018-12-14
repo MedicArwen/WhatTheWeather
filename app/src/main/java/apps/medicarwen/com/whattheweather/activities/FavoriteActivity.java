@@ -158,11 +158,11 @@ public class FavoriteActivity extends AppCompatActivity implements MyCallback {
             mCities.add(new City(strResponse));
             mFavoriteAdapter.notifyDataSetChanged();
             DataAccessCallOpenWeather.saveCityList(mContext,mCities);
-            Toast.makeText(mContext,"text_error_msg_webservice_success",Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext,R.string.text_error_msg_webservice_success,Toast.LENGTH_SHORT).show();
 
         } catch (Exception e) {
             Log.d("WTF", "onResponse: " + e.getMessage());
-            Toast.makeText(mContext,"text_error_msg_webservice_failed",Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext,R.string.text_error_msg_webservice_failed,Toast.LENGTH_SHORT).show();
         }
     }
 }
